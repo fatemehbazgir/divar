@@ -6,11 +6,12 @@ import AdminPage from "../pages/AdminPage";
 import PageNotFound from "../pages/404";
 import { useQuery } from "@tanstack/react-query";
 import { getProfile } from "../services/user";
+import Loader from "../components/modules/Loader";
 
 function Router() {
   const { data, isLoading } = useQuery(["profile"], getProfile);
 
-  if (isLoading) return <h1>Loading...</h1>;
+  if (isLoading) return <Loader />;
   return (
     <Routes>
       <Route index element={<HomePage />} />
