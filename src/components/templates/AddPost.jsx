@@ -4,6 +4,7 @@ import { getCategory } from "../../services/admin";
 import styles from "./AddPost.module.css";
 import { getCookie } from "../../utils/cookie";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 function AddPost() {
   const { data } = useQuery(["get-categories"], getCategory);
@@ -40,8 +41,8 @@ function AddPost() {
           Authorization: `bearer ${token}`,
         },
       })
-      .then((res) => console.log(res))
-      .catch((error) => console.log(error));
+      .then((res) => toast.success(res.data.message))
+      .catch((error) => toast.error("مشکلی پیش آمده است"));
   };
 
   return (
